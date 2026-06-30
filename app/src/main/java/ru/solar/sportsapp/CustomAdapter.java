@@ -13,6 +13,10 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.SportsViewHolder> {
     private final List<Sport> sportList;
+    public SportClickListener clickListener;
+    public void setClickListener(SportClickListener myListener){
+        this.clickListener = myListener;
+    }
 
     public CustomAdapter(List<Sport> sportList) {
         this.sportList = sportList;
@@ -37,13 +41,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.SportsView
         return sportList.size();
     }
 
-    public static class SportsViewHolder extends RecyclerView.ViewHolder{
+    public  class SportsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView image_item;
         TextView text_item;
         public SportsViewHolder(@NonNull View itemView) {
             super(itemView);
             image_item = itemView.findViewById(R.id.itemImageView);
             text_item = itemView.findViewById(R.id.itemTextView);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(clickListener != null) clickListener.onClick(v,getBindingAdapterPosition());
         }
     }
 }
