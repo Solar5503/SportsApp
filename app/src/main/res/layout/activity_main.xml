@@ -13,6 +13,7 @@
         android:id="@+id/imageHeader"
         android:src="@drawable/header"
         android:contentDescription="sport image"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
